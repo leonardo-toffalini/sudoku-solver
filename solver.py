@@ -1,3 +1,6 @@
+import sys
+import os
+
 def solve(board):
     find = find_empty(board)
     if find:
@@ -61,17 +64,11 @@ def print_board(board):
 
 
 def main():
-    board = [
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]
-    ]
+    board_path = sys.argv[1]
+    print(board_path)
+    with open(board_path, 'r') as f:
+        board = [[int(num) for num in line.split(',')] for line in f]
+    
     print("Sudoku Board:")
     print_board(board)
     solve(board)
