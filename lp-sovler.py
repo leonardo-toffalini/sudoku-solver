@@ -6,6 +6,7 @@ itos = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six
 def generate(board):
     output = ""
     output += 'set I = 0 .. 8;\n'
+    output += 'set J = 0 .. 2;\n'
     output += 'set N = 1 .. 9;\n'
     output += 'var X {I, I, N} binary;\n'
     for i in range(len(board)):
@@ -15,6 +16,7 @@ def generate(board):
 
     output += "s.t. row_unique {i in I, n in N}: sum {j in I} X[i, j, n] = 1;\n"
     output += "s.t. col_unique {j in I, n in N}: sum {i in I} X[i, j, n] = 1;\n"
+    output += "s.t. nonet_unique {i in J, j in J, n in N}: sum {r in J} sum {d in J} X[3*i + r, 3*j + d, n] = 1;\n"
     return output
 
 
