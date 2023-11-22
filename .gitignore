@@ -1,3 +1,4 @@
 .DS_Store
 __pycache__/
 board.txt
+sudoku-lp.txt
